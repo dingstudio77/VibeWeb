@@ -29,15 +29,15 @@ export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-32 px-6 bg-[#0a0514]">
+    <section id="faq" className="py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-black mb-4">자주 묻는 질문</h2>
-          <p className="text-white/50">궁금하신 사항을 확인해 보세요.</p>
+          <h2 className="text-4xl font-black mb-4 text-zinc-900">자주 묻는 질문</h2>
+          <p className="text-zinc-500">궁금하신 사항을 확인해 보세요.</p>
         </motion.div>
 
         <div className="space-y-4">
@@ -47,14 +47,18 @@ export default function FAQ() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="glass rounded-2xl overflow-hidden border-white/5"
+              className="glass rounded-2xl overflow-hidden border-black/5"
             >
               <button 
                 onClick={() => setActiveIndex(activeIndex === i ? null : i)}
-                className="w-full px-8 py-6 flex justify-between items-center text-left hover:bg-white/5 transition-colors"
+                className="w-full px-8 py-6 flex justify-between items-center text-left hover:bg-zinc-50 transition-colors group"
               >
-                <span className="text-lg font-bold">{faq.question}</span>
-                {activeIndex === i ? <Minus size={20} className="text-violet-500" /> : <Plus size={20} />}
+                <span className="text-lg font-bold text-zinc-900">{faq.question}</span>
+                {activeIndex === i ? (
+                  <Minus size={20} className="text-purple-600" />
+                ) : (
+                  <Plus size={20} className="text-zinc-400 group-hover:text-zinc-900 transition-colors" />
+                )}
               </button>
               <AnimatePresence>
                 {activeIndex === i && (
@@ -62,7 +66,7 @@ export default function FAQ() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="px-8 pb-6 text-white/60 leading-relaxed"
+                    className="px-8 pb-6 text-zinc-600 leading-relaxed font-medium"
                   >
                     {faq.answer}
                   </motion.div>

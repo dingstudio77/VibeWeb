@@ -42,22 +42,21 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-32 px-6 bg-[#120d1f] relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-linear-to-b from-black/20 to-transparent pointer-events-none" />
+    <section id="services" className="py-24 px-6 bg-zinc-50 relative">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
             <motion.span 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-violet-500 font-bold uppercase tracking-widest text-sm mb-4 block"
+              className="text-purple-600 font-bold uppercase tracking-widest text-sm mb-4 block"
             >
               Our Expertise
             </motion.span>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-black"
+              className="text-4xl md:text-6xl font-black text-zinc-900"
             >
               비즈니스를 위한<br />
               올인원 솔루션
@@ -66,7 +65,7 @@ export default function Services() {
           <motion.p 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-white/50 text-lg max-w-sm mb-2"
+            className="text-zinc-500 text-lg max-sm mb-2 font-medium"
           >
             기획부터 제작, 운영까지 전문화된 프로세스로 귀하의 성공을 돕습니다.
           </motion.p>
@@ -80,18 +79,18 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -10 }}
-              className="glass p-8 rounded-3xl relative overflow-hidden group"
+              className="glass p-8 rounded-3xl relative overflow-hidden group hover:border-purple-600/20 shadow-sm hover:shadow-xl transition-all"
             >
-              <div className="mb-6 p-4 bg-white/5 rounded-2xl w-fit group-hover:bg-violet-600/20 group-hover:text-violet-500 transition-colors">
+              <div className="mb-6 p-4 bg-zinc-100 rounded-2xl w-fit group-hover:bg-purple-600/10 group-hover:text-purple-600 transition-colors border border-black/5 text-zinc-900">
                 <service.icon size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-              <p className="text-white/60 leading-relaxed mb-6">
+              <h3 className="text-2xl font-bold mb-4 text-zinc-900">{service.title}</h3>
+              <p className="text-zinc-600 leading-relaxed mb-6">
                 {service.description}
               </p>
               <div className="flex flex-wrap gap-2">
                 {service.tags.map(tag => (
-                  <span key={tag} className="text-[10px] font-bold uppercase tracking-tight py-1 px-2 bg-white/5 rounded-md text-white/40">
+                  <span key={tag} className="text-[10px] font-bold uppercase tracking-tight py-1 px-2 bg-zinc-100 rounded-md text-zinc-500 border border-black/5">
                     #{tag}
                   </span>
                 ))}

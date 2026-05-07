@@ -1,39 +1,39 @@
 {
   "entities": {
-    "PortfolioItem": {
-      "title": "Portfolio Item",
-      "description": "A portfolio project display item",
+    "Portfolio": {
+      "title": "Portfolio",
+      "description": "A portfolio project item",
       "type": "object",
       "properties": {
         "title": { "type": "string" },
         "category": { "type": "string" },
         "description": { "type": "string" },
-        "img": { "type": "string" },
-        "color": { "type": "string" },
-        "order": { "type": "number" },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "image": { "type": "string", "format": "uri" },
+        "url": { "type": "string", "format": "uri" },
+        "order": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
       },
-      "required": ["title", "category", "description", "img", "order", "createdAt"]
+      "required": ["title", "category", "description", "image"]
     },
     "Admin": {
-      "title": "Administrator",
-      "description": "User with management permissions",
+      "title": "Admin",
+      "description": "System administrator",
       "type": "object",
       "properties": {
-        "email": { "type": "string" },
-        "role": { "type": "string", "enum": ["admin"] }
+        "email": { "type": "string", "format": "email" }
       },
-      "required": ["email", "role"]
+      "required": ["email"]
     }
   },
   "firestore": {
-    "/portfolio/{itemId}": {
-      "schema": "PortfolioItem",
-      "description": "List of portfolio projects"
+    "portfolios": {
+      "schema": "Portfolio",
+      "description": "Collection of portfolio projects"
     },
-    "/admins/{uid}": {
+    "admins": {
       "schema": "Admin",
-      "description": "Verified admin users"
+      "description": "Collection of authorized admin users"
     }
   }
 }

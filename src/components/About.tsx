@@ -21,7 +21,7 @@ const values = [
 
 export default function About() {
   return (
-    <section id="about" className="py-32 px-6 bg-[#0a0514] overflow-hidden">
+    <section id="about" className="py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <motion.div
@@ -29,16 +29,29 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-violet-500 font-bold uppercase tracking-widest text-sm mb-4 block">Who We Are</span>
+            <span className="text-purple-600 font-bold uppercase tracking-widest text-sm mb-4 block">Who We Are</span>
             <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
               디지털 세상을 향한<br />
-              <span className="text-white/40">가장 스타일리시한 초대</span>
+              <span className="text-zinc-300">가장 스타일리시한 초대</span>
             </h2>
-            <p className="text-lg text-white/60 mb-10 leading-relaxed max-w-lg">
+            <p className="text-lg text-zinc-500 mb-10 leading-relaxed max-w-lg">
               바이브웹은 1인 브랜드부터 스타트업까지, 각자의 고유한 '바이브(Vibe)'를 웹이라는 캔버스에 담아내는 크리에이티브 스튜디오입니다. 
               우리는 트렌드를 선도하며 고객의 비즈니스가 디지털 공간에서 독보적인 존재감을 가질 수 있도록 돕습니다.
             </p>
-
+            <div className="flex gap-12 text-zinc-900">
+              <div>
+                <div className="text-4xl font-black mb-1">150+</div>
+                <div className="text-sm text-zinc-400 uppercase font-bold tracking-widest">Projects</div>
+              </div>
+              <div>
+                <div className="text-4xl font-black mb-1">98%</div>
+                <div className="text-sm text-zinc-400 uppercase font-bold tracking-widest">Satisfaction</div>
+              </div>
+              <div>
+                <div className="text-4xl font-black mb-1">24h</div>
+                <div className="text-sm text-zinc-400 uppercase font-bold tracking-widest">Response</div>
+              </div>
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-1 gap-6">
@@ -48,14 +61,14 @@ export default function About() {
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.2, duration: 0.8 }}
-                className="glass p-8 rounded-3xl flex gap-6 hover:bg-white/10 transition-colors group"
+                className="glass p-8 rounded-3xl flex gap-6 hover:bg-zinc-50 transition-colors group"
               >
-                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                  <value.icon size={28} className="text-violet-500" />
+                <div className="w-16 h-16 bg-zinc-100 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform border border-black/5">
+                  <value.icon size={28} className="text-purple-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">{value.title}</h3>
-                  <p className="text-white/50">{value.text}</p>
+                  <h3 className="text-xl font-bold mb-2 text-zinc-900">{value.title}</h3>
+                  <p className="text-zinc-500">{value.text}</p>
                 </div>
               </motion.div>
             ))}

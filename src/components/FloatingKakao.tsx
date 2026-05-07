@@ -4,7 +4,7 @@ import { MessageCircle } from 'lucide-react';
 export default function FloatingKakao() {
   return (
     <motion.a
-      href="http://pf.kakao.com/_MxoTxbxj"
+      href="http://pf.kakao.com/_MxoTxbxj" // KakaoTalk Channel URL
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}

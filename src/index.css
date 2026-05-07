@@ -6,25 +6,25 @@
   --font-display: "Outfit", sans-serif;
   
   --color-brand: #ffffff;
-  --color-accent: #6d28d9; /* Deep violet matching the 'ident' brand */
+  --color-accent: #a855f7; /* A vibrant purple */
 }
 
 @layer base {
   body {
-    @apply bg-[#0f071a] text-white antialiased selection:bg-violet-500 selection:text-white;
+    @apply bg-white text-zinc-900 antialiased selection:bg-black selection:text-white;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display tracking-tight;
+    @apply font-display tracking-tight text-zinc-900;
   }
 }
 
 .glass {
-  @apply backdrop-blur-md bg-white/5 border border-white/10;
+  @apply backdrop-blur-md bg-white/70 border border-black/5 shadow-sm;
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-linear-to-b from-white to-white/50;
+  @apply bg-clip-text text-transparent bg-linear-to-b from-zinc-900 to-zinc-500;
 }
 
 /* Custom hide scrollbar */
@@ -32,9 +32,9 @@
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-black;
+  @apply bg-white;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-white/20 rounded-full hover:bg-white/40;
+  @apply bg-black/10 rounded-full hover:bg-black/20;
 }
 
