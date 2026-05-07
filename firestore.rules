@@ -1,0 +1,75 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && isEmailVerified() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- Validation Helpers ---
+
+    function isValidPortfolioItem(data) {
+      return (!('title' in data) || (data.title is string && data.title.size() > 0 && data.title.size() <= 200))
+        && (!('category' in data) || (data.category is string && data.category.size() > 0 && data.category.size() <= 100))
+        && (!('description' in data) || (data.description is string && data.description.size() > 0 && data.description.size() <= 1000))
+        && (!('img' in data) || (data.img is string && data.img.size() > 0 && data.img.size() <= 2000))
+        && (!('link' in data) || (data.link is string && data.link.size() <= 2000))
+        && (!('color' in data) || (data.color is string && data.color.size() > 0 && data.color.size() <= 200))
+        && (!('order' in data) || (data.order is number));
+    }
+
+    // --- Collection Rules ---
+
+    // Portfolio Collection
+    match /portfolio/{itemId} {
+      allow read: if true; // Public read
+      allow create: if isAdmin() 
+        && isValidId(itemId)
+        && incoming().keys().hasAll(['title', 'category', 'description', 'img', 'color', 'order', 'createdAt'])
+        && (incoming().keys().size() == 7 || (incoming().keys().size() == 8 && 'link' in incoming()))
+        && isValidPortfolioItem(incoming())
+        && incoming().createdAt == request.time;
+      allow update: if isAdmin() 
+        && isValidId(itemId)
+        && isValidPortfolioItem(incoming())
+        && (
+          !('createdAt' in incoming()) || 
+          !('createdAt' in existing()) || 
+          incoming().createdAt == existing().createdAt
+        );
+      allow delete: if isAdmin() && isValidId(itemId);
+    }
+
+    // Admins Collection
+    match /admins/{uid} {
+      allow read: if isSignedIn() && request.auth.uid == uid;
+      // Allow the designated owner to bootstrap their own admin record
+      allow write: if isSignedIn() && request.auth.uid == uid && request.auth.token.email == "dingstudio77@gmail.com";
+    }
+  }
+}

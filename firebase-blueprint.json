@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "PortfolioItem": {
+      "title": "Portfolio Item",
+      "description": "A portfolio project display item",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "img": { "type": "string" },
+        "color": { "type": "string" },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "description", "img", "order", "createdAt"]
+    },
+    "Admin": {
+      "title": "Administrator",
+      "description": "User with management permissions",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin"] }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/portfolio/{itemId}": {
+      "schema": "PortfolioItem",
+      "description": "List of portfolio projects"
+    },
+    "/admins/{uid}": {
+      "schema": "Admin",
+      "description": "Verified admin users"
+    }
+  }
+}
