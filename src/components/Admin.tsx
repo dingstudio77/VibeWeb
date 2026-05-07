@@ -115,9 +115,15 @@ export default function Admin() {
         fetchPortfolios();
       } else {
         setIsAdmin(false);
+        // If it's the target email but not in DB, we'll offer the bootstrap button later
       }
     } catch (error) {
       console.error("Error checking admin status:", error);
+      // Even if check fails, we might want to try fetching to see if it's a global read issue
+      if (error instanceof Error && error.message.includes("permission")) {
+        console.warn("Permission denied for admins collection read. User:", uid);
+      }
+      setIsAdmin(false);
     }
   };
 

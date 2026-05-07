@@ -62,6 +62,9 @@ export default function Portfolio() {
       setProjects(items.length > 0 ? items : fallbackProjects);
     }, (error) => {
       console.error("Error fetching portfolios:", error);
+      if (error.message.includes("permission")) {
+        console.warn("Permissions issue detected for portfolios read. Check firestore.rules.");
+      }
       setProjects(fallbackProjects);
     });
 

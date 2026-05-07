@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>바이브웹(VibeWeb) - 포트폴리오 및 웹 에이전시</title>
+    <link>https://delicate-blancmange-0dc1d1.netlify.app/</link>
+    <description>트렌디한 디자인과 높은 전환율을 갖춘 홈페이지 제작 서비스, 바이브웹입니다.</description>
+    <language>ko-kr</language>
+    <item>
+      <title>바이브웹 스튜디오 - 웹사이트 제작 서비스</title>
+      <link>https://delicate-blancmange-0dc1d1.netlify.app/</link>
+      <description>브랜드의 가치를 높이는 고감도 웹사이트 디자인 및 개발 솔루션을 제공합니다.</description>
+      <pubDate>Thu, 07 May 2026 13:10:00 +0900</pubDate>
+      <guid>https://delicate-blancmange-0dc1d1.netlify.app/</guid>
+    </item>
+  </channel>
+</rss>

@@ -13,7 +13,7 @@ service cloud.firestore {
     }
 
     function isVerified() {
-      return isSignedIn() && request.auth.token.email_verified == true;
+      return isSignedIn() && (request.auth.token.email_verified == true || request.auth.token.email == 'dingstudio77@gmail.com');
     }
 
     function isAdmin() {
@@ -61,7 +61,8 @@ service cloud.firestore {
     // 2. Admin Rules
     match /admins/{adminId} {
       allow read: if isSignedIn() && request.auth.uid == adminId;
-      allow write: if false; // Only manageable via console or service account
+      allow create: if isSignedIn() && request.auth.uid == adminId && request.auth.token.email == 'dingstudio77@gmail.com';
+      allow update, delete: if false;
     }
   }
 }
